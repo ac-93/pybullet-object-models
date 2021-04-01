@@ -1,0 +1,544 @@
+<sdf version="1.6">
+  <world name="default">
+  <gravity>0 0 -9.8</gravity>
+
+	<model name="YcbPear">
+      <pose frame=''>-0.2361526 0.11794 0.0 0.5355226 0 0</pose>
+      <link name="baselink">
+        <contact>
+          <lateral_friction>0.6</lateral_friction>
+          <rolling_friction>0.001</rolling_friction>
+          <spinning_friction>0.001</spinning_friction>
+          <contact_cfm>0.0</contact_cfm>
+          <contact_erp>1.0</contact_erp>
+        </contact>
+        <inertial>
+          <!-- <pose frame=''>0 0.005 0.04 0.0 0.0 0.0</pose> -->
+            <mass>0.049</mass>
+            <inertia>
+                <ixx>1e-3</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>1e-3</iyy>
+                <iyz>0</iyz>
+                <izz>1e-3</izz>
+            </inertia>
+        </inertial>
+        <visual name="visual">
+          <origin rpy="0 0 0" xyz="0.032542733786051076 -0.011075535445138571 -0.030040521498604082" />
+            <geometry>
+                <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>../../ycb_objects/pear/google_16k/textured.obj</uri>
+                </mesh>
+            </geometry>
+            <material>
+      				<ambient>1 1 1 1</ambient>
+      				<diffuse>1.00000 1.00000 1.000000 1</diffuse>
+      				<specular>.5 .5 .5 1</specular>
+      				<emissive>0 0 0 0</emissive>
+      			</material>
+        </visual>
+        <collision name="collision">
+          <origin rpy="0 0 0" xyz="0.032542733786051076 -0.011075535445138571 -0.030040521498604082" />
+            <geometry>
+                <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>../../ycb_objects/pear/google_16k/textured_vhacd.obj</uri>
+                </mesh>
+            </geometry>
+        </collision>
+      </link>
+  	</model>
+
+	<model name="YcbChipsCan">
+      <pose frame=''>-0.19920 0.29439 0.1 0 0 -1.7216858</pose>
+      <link name="baselink">
+        <contact>
+          <lateral_friction>0.5</lateral_friction>
+          <rolling_friction>0.001</rolling_friction>
+          <spinning_friction>0.001</spinning_friction>
+          <contact_cfm>0.0</contact_cfm>
+          <contact_erp>1.0</contact_erp>
+        </contact>
+        <inertial>
+          <!-- <pose frame=''>-0.005 0.01 0.1 0.0 0.0 0.0</pose> -->
+            <mass>0.205</mass>
+            <inertia>
+                <ixx>1e-3</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>1e-3</iyy>
+                <iyz>0</iyz>
+                <izz>1e-3</izz>
+            </inertia>
+        </inertial>
+        <visual name="visual">
+            <origin rpy="0 0 0" xyz="0.0 0.0 -0.1"/>
+            <geometry>
+                <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>../../ycb_objects/chips_can/google_16k/textured.obj</uri>
+                </mesh>
+            </geometry>
+            <material>
+      				<ambient>1 1 1 1</ambient>
+      				<diffuse>1.00000 1.00000 1.000000 1</diffuse>
+      				<specular>.5 .5 .5 1</specular>
+      				<emissive>0 0 0 0</emissive>
+      			</material>
+        </visual>
+        <collision name="collision">
+            <origin rpy="0 0 0" xyz="0.0 0.0 -0.1"/>
+            <geometry>
+                <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>../../ycb_objects/chips_can/google_16k/textured_vhacd.obj</uri>
+                </mesh>
+            </geometry>
+        </collision>
+      </link>
+  	</model>
+
+	<model name="YcbMediumClamp">
+      <pose frame=''>-0.33023 0.23849 0. 0 0 0</pose>
+      <link name="baselink">
+        <contact>
+          <lateral_friction>0.6</lateral_friction>
+          <rolling_friction>0.001</rolling_friction>
+          <spinning_friction>0.001</spinning_friction>
+          <contact_cfm>0.0</contact_cfm>
+          <contact_erp>1.0</contact_erp>
+        </contact>
+        <inertial>
+          <!-- <pose frame=''>0.02 0.009 0.04 -0.1 0 0.0</pose> -->
+            <mass>0.059</mass>
+            <inertia>
+                <ixx>1e-3</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>1e-3</iyy>
+                <iyz>0</iyz>
+                <izz>1e-3</izz>
+            </inertia>
+        </inertial>
+        <visual name="visual">
+          <origin rpy="0 0 0" xyz="-0.010827483056379221 0.014903599956658636 -0.012617934887942762" />
+            <geometry>
+                <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>../../ycb_objects/medium_clamp/google_16k/textured.obj</uri>
+                </mesh>
+            </geometry>
+            <material>
+      				<ambient>1 1 1 1</ambient>
+      				<diffuse>1.00000 1.00000 1.000000 1</diffuse>
+      				<specular>.5 .5 .5 1</specular>
+      				<emissive>0 0 0 0</emissive>
+      			</material>
+        </visual>
+        <collision name="collision">
+          <origin rpy="0 0 0" xyz="-0.010827483056379221 0.014903599956658636 -0.012617934887942762" />
+            <geometry>
+                <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>../../ycb_objects/medium_clamp/google_16k/textured_vhacd.obj</uri>
+                </mesh>
+            </geometry>
+        </collision>
+      </link>
+  	</model>
+
+	<model name="YcbTennisBall">
+      <pose frame=''>-0.1361526 0.05094 0. 0 0 -0.5236056</pose>
+      <link name="baselink">
+        <contact>
+          <lateral_friction>0.8</lateral_friction>
+          <rolling_friction>0.001</rolling_friction>
+          <spinning_friction>0.001</spinning_friction>
+          <contact_cfm>0.0</contact_cfm>
+          <contact_erp>1.0</contact_erp>
+        </contact>
+        <inertial>
+          <!-- <pose frame=''>0.0 0.005 0.03 0.0 0.0 0.0</pose> -->
+            <mass>0.058</mass>
+            <inertia>
+                <ixx>1e-3</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>1e-3</iyy>
+                <iyz>0</iyz>
+                <izz>1e-3</izz>
+            </inertia>
+        </inertial>
+        <visual name="visual">
+          <origin rpy="0 0 0" xyz="-0.008233239762589124 0.044192426304665286 -0.03288662063700162" />
+            <geometry>
+                <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>../../ycb_objects/tennis_ball/google_16k/textured.obj</uri>
+                </mesh>
+            </geometry>
+            <material>
+      				<ambient>1 1 1 1</ambient>
+      				<diffuse>1.00000 1.00000 1.000000 1</diffuse>
+      				<specular>.5 .5 .5 1</specular>
+      				<emissive>0 0 0 0</emissive>
+      			</material>
+        </visual>
+        <collision name="collision">
+          <origin rpy="0 0 0" xyz="-0.008233239762589124 0.044192426304665286 -0.03288662063700162" />
+            <geometry>
+                <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>../../ycb_objects/tennis_ball/google_16k/textured_vhacd.obj</uri>
+                </mesh>
+            </geometry>
+        </collision>
+      </link>
+  	</model>
+
+	<model name="YcbStrawberry">
+      <pose frame=''>-0.1561526 0.20094 0. 0 0 -0.5236056</pose>
+      <link name="baselink">
+        <contact>
+          <lateral_friction>0.5</lateral_friction>
+          <rolling_friction>0.001</rolling_friction>
+          <spinning_friction>0.001</spinning_friction>
+          <contact_cfm>0.0</contact_cfm>
+          <contact_erp>1.0</contact_erp>
+        </contact>
+        <inertial>
+          <!-- <pose frame=''>-0.005 0.005 0.02 0.0 0.0 0.0</pose> -->
+            <mass>0.018</mass>
+            <inertia>
+                <ixx>1e-3</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>1e-3</iyy>
+                <iyz>0</iyz>
+                <izz>1e-3</izz>
+            </inertia>
+        </inertial>
+        <visual name="visual">
+          <origin rpy="0 0 0" xyz="0.0014938727773305587 -0.015432679933728788 -0.02111450326881559" />
+            <geometry>
+                <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>../../ycb_objects/strawberry/google_16k/textured.obj</uri>
+                </mesh>
+            </geometry>
+            <material>
+      				<ambient>1 1 1 1</ambient>
+      				<diffuse>1.00000 1.00000 1.000000 1</diffuse>
+      				<specular>.5 .5 .5 1</specular>
+      				<emissive>0 0 0 0</emissive>
+      			</material>
+        </visual>
+        <collision name="collision">
+          <origin rpy="0 0 0" xyz="0.0014938727773305587 -0.015432679933728788 -0.02111450326881559" />
+            <geometry>
+                <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>../../ycb_objects/strawberry/google_16k/textured_vhacd.obj</uri>
+                </mesh>
+            </geometry>
+        </collision>
+      </link>
+  	</model>
+
+    <model name="YcbMasterChefCan">
+        <pose frame=''>-0.0547969 0.161169 0.07 0 0 -1.4993633</pose>
+        <link name="baselink">
+        <contact>
+          <lateral_friction>0.5</lateral_friction>
+          <rolling_friction>0.001</rolling_friction>
+          <spinning_friction>0.001</spinning_friction>
+          <contact_cfm>0.0</contact_cfm>
+          <contact_erp>1.0</contact_erp>
+        </contact>
+          <inertial>
+          <!-- <pose frame=''>-0.005 0.013 0.0 0.0 0.0 0.0</pose> -->
+              <mass>0.404</mass>
+              <inertia>
+                  <ixx>1e-3</ixx>
+                  <ixy>0</ixy>
+                  <ixz>0</ixz>
+                  <iyy>1e-3</iyy>
+                  <iyz>0</iyz>
+                  <izz>1e-3</izz>
+              </inertia>
+          </inertial>
+          <visual name="visual">
+            <origin rpy="0 0 0" xyz="0.01707072958296921 0.009762855837207728 -0.07058421978429177" />
+              <geometry>
+                  <mesh>
+                      <scale>1 1 1</scale>
+                      <uri>../../ycb_objects/master_chef_can/google_16k/textured.obj</uri>
+                  </mesh>
+              </geometry>
+              <material>
+        				<ambient>1 1 1 1</ambient>
+        				<diffuse>1.00000 1.00000 1.000000 1</diffuse>
+        				<specular>.5 .5 .5 1</specular>
+        				<emissive>0 0 0 0</emissive>
+        			</material>
+          </visual>
+          <collision name="collision">
+            <origin rpy="0 0 0" xyz="0.01707072958296921 0.009762855837207728 -0.07058421978429177" />
+              <geometry>
+                  <mesh>
+                      <scale>1 1 1</scale>
+                      <uri>../../ycb_objects/master_chef_can/google_16k/textured_vhacd.obj</uri>
+                  </mesh>
+              </geometry>
+          </collision>
+        </link>
+    	</model>
+
+    <model name="YcbScissors">
+        <pose frame=''>-0.37456 0.13899 -0.08 0 0 0.5236056</pose>
+        <link name="baselink">
+        <contact>
+          <lateral_friction>0.6</lateral_friction>
+          <rolling_friction>0.001</rolling_friction>
+          <spinning_friction>0.001</spinning_friction>
+          <contact_cfm>0.0</contact_cfm>
+          <contact_erp>1.0</contact_erp>
+        </contact>
+          <inertial>
+          <!-- <pose frame=''>0.0 -0.005 0.1 0.0 0.0 0.0</pose> -->
+              <mass>0.082</mass>
+              <inertia>
+                  <ixx>1e-3</ixx>
+                  <ixy>0</ixy>
+                  <ixz>0</ixz>
+                  <iyy>1e-3</iyy>
+                  <iyz>0</iyz>
+                  <izz>1e-3</izz>
+              </inertia>
+          </inertial>
+          <visual name="visual">
+            <origin rpy="0 0 0" xyz="-0.01459152171807974 -0.0031621364077388443 -0.007400674371156582" />
+              <geometry>
+                  <mesh>
+                      <scale>1 1 1</scale>
+                      <uri>../../ycb_objects/scissors/google_16k/textured.obj</uri>
+                  </mesh>
+              </geometry>
+              <material>
+        				<ambient>1 1 1 1</ambient>
+        				<diffuse>1.00000 1.00000 1.000000 1</diffuse>
+        				<specular>.5 .5 .5 1</specular>
+        				<emissive>0 0 0 0</emissive>
+        			</material>
+          </visual>
+          <collision name="collision">
+            <origin rpy="0 0 0" xyz="-0.01459152171807974 -0.0031621364077388443 -0.007400674371156582" />
+              <geometry>
+                  <mesh>
+                      <scale>1 1 1</scale>
+                      <uri>../../ycb_objects/scissors/google_16k/textured_vhacd.obj</uri>
+                  </mesh>
+              </geometry>
+          </collision>
+        </link>
+    	</model>
+
+      <model name="YcbPowerDrill">
+          <pose frame=''>-0.47456 0.25899 0. 0 0 -0.5236056</pose>
+          <link name="baselink">
+        <contact>
+          <lateral_friction>0.9</lateral_friction>
+          <rolling_friction>0.001</rolling_friction>
+          <spinning_friction>0.001</spinning_friction>
+          <contact_cfm>0.0</contact_cfm>
+          <contact_erp>1.0</contact_erp>
+        </contact>
+            <inertial>
+          <!-- <pose frame=''>-0.005 0.01 0.06 0 0 0.6</pose> -->
+                <mass>0.895</mass>
+                <inertia>
+                    <ixx>1e-3</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>1e-3</iyy>
+                    <iyz>0</iyz>
+                    <izz>1e-3</izz>
+                </inertia>
+            </inertial>
+            <visual name="visual">
+              <origin rpy="0 0 0" xyz="0.030714691255337507 -0.024350845730285495 -0.02356763398968421" />
+                <geometry>
+                    <mesh>
+                        <scale>1 1 1</scale>
+                        <uri>../../ycb_objects/power_drill/google_16k/textured.obj</uri>
+                    </mesh>
+                </geometry>
+                <material>
+                  <ambient>1 1 1 1</ambient>
+                  <diffuse>1.00000 1.00000 1.000000 1</diffuse>
+                  <specular>.5 .5 .5 1</specular>
+                  <emissive>0 0 0 0</emissive>
+                </material>
+            </visual>
+            <collision name="collision">
+              <origin rpy="0 0 0" xyz="0.030714691255337507 -0.024350845730285495 -0.02356763398968421" />
+                <geometry>
+                    <mesh>
+                        <scale>1 1 1</scale>
+                        <uri>../../ycb_objects/power_drill/google_16k/textured_vhacd.obj</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+          </link>
+      </model>
+
+      <model name="YcbPottedMeatCan">
+          <pose frame=''>-0.3561526 0.02094 0.047 0 0 -0.5236056</pose>
+          <link name="baselink">
+             <contact>
+              <lateral_friction>0.6</lateral_friction>
+              <rolling_friction>0.0</rolling_friction>
+              <contact_cfm>0.0</contact_cfm>
+              <contact_erp>1.0</contact_erp>
+            </contact>
+            <inertial>
+              <!-- <pose frame=''>0 0.012 -0.01 0 0 -0.5</pose> -->
+              <mass>0.370</mass>
+              <inertia>
+                <ixx>1e-3</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>1e-3</iyy>
+                <iyz>0</iyz>
+                <izz>1e-3</izz>
+              </inertia>
+            </inertial>
+            <visual name="visual">
+              <origin rpy="0 0 0" xyz="0.032840352216858736 0.02635271439745596 -0.03783085009135961" />
+              <geometry>
+                <mesh>
+                  <scale>1 1 1</scale>
+                  <uri>../../ycb_objects/potted_meat_can/google_16k/textured.obj</uri>
+                </mesh>
+              </geometry>
+              <material>
+                <ambient>1 1 1 1</ambient>
+                <diffuse>1.00000 1.00000 1.000000 1</diffuse>
+                <specular>.5 .5 .5 1</specular>
+                <emissive>0 0 0 0</emissive>
+              </material>
+            </visual>
+            <collision name="collision">
+              <origin rpy="0 0 0" xyz="0.032840352216858736 0.02635271439745596 -0.03783085009135961" />
+              <geometry>
+                <mesh>
+                  <scale>1 1 1</scale>
+                  <uri>../../ycb_objects/potted_meat_can/google_16k/textured_vhacd.obj</uri>
+                </mesh>
+              </geometry>
+            </collision>
+          </link>
+        </model>
+
+      <model name="YcbTomatoSoupCan">
+          <pose frame=''>-0.4861526 0.02094 0.06 0 0 -0.5236056</pose>
+          <link name="baselink">
+        <contact>
+          <lateral_friction>0.6</lateral_friction>
+          <rolling_friction>0.001</rolling_friction>
+          <spinning_friction>0.001</spinning_friction>
+          <contact_cfm>0.0</contact_cfm>
+          <contact_erp>1.0</contact_erp>
+        </contact>
+            <inertial>
+          <!-- <pose frame=''>0 0.0 -0.02 0.0 0.0 0.0</pose> -->
+                <mass>0.349</mass>
+                <inertia>
+                    <ixx>1e-3</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>1e-3</iyy>
+                    <iyz>0</iyz>
+                    <izz>1e-3</izz>
+                </inertia>
+            </inertial>
+            <visual name="visual">
+              <origin rpy="0 0 0" xyz="0.009342099371394881 -0.08422424437662782 -0.05002583293554274" />
+                <geometry>
+                    <mesh>
+                        <scale>1 1 1</scale>
+                        <uri>../../ycb_objects/tomato_soup_can/google_16k/textured.obj</uri>
+                    </mesh>
+                </geometry>
+                <material>
+                  <ambient>1 1 1 1</ambient>
+                  <diffuse>1.00000 1.00000 1.000000 1</diffuse>
+                  <specular>.5 .5 .5 1</specular>
+                  <emissive>0 0 0 0</emissive>
+                </material>
+            </visual>
+            <collision name="collision">
+              <origin rpy="0 0 0" xyz="0.009342099371394881 -0.08422424437662782 -0.05002583293554274" />
+                <geometry>
+                    <mesh>
+                        <scale>1 1 1</scale>
+                        <uri>../../ycb_objects/tomato_soup_can/google_16k/textured_vhacd.obj</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+          </link>
+      </model>
+
+      <model name="YcbMustardBottle">
+          <pose frame=''>-0.0361526 0.29094 0.07 0 0 -1.5707963</pose>
+          <link name="baselink">
+            <contact>
+              <lateral_friction>0.8</lateral_friction>
+              <spinning_friction>0.001</spinning_friction>
+              <rolling_friction>0.001</rolling_friction>
+              <contact_cfm>0.0</contact_cfm>
+              <contact_erp>1.0</contact_erp>
+            </contact>
+            <inertial>
+              <!-- <pose frame=''>0.005 -0.005 -0.015 0 0 0.1</pose> -->
+              <mass>0.603</mass>
+              <inertia>
+                <ixx>1e-3</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>1e-3</iyy>
+                <iyz>0</iyz>
+                <izz>1e-3</izz>
+              </inertia>
+            </inertial>
+            <visual name="visual">
+              <origin rpy="0 0 0" xyz="0.015054331427098055 0.02310937618792766 -0.07504227100332876" />
+              <geometry>
+                <mesh>
+                  <scale>1 1 1</scale>
+                  <uri>../../ycb_objects/mustard_bottle/google_16k/textured.obj</uri>
+                </mesh>
+              </geometry>
+              <material>
+                <ambient>1 1 1 1</ambient>
+                <diffuse>1.00000 1.00000 1.000000 1</diffuse>
+                <specular>.5 .5 .5 1</specular>
+                <emissive>0 0 0 0</emissive>
+              </material>
+            </visual>
+            <collision name="collision">
+              <origin rpy="0 0 0" xyz="0.015054331427098055 0.02310937618792766 -0.07504227100332876" />
+              <geometry>
+                <mesh>
+                  <scale>1 1 1</scale>
+                  <uri>../../ycb_objects/mustard_bottle/google_16k/textured_vhacd.obj</uri>
+                </mesh>
+              </geometry>
+            </collision>
+          </link>
+        </model>
+
+  </world>
+</sdf>
