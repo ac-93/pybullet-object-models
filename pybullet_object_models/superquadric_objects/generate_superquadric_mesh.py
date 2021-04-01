@@ -2,7 +2,7 @@ import os
 import pygalmesh
 import meshio
 import trimesh
-
+import numpy as np
 import time
 
 t0 = time.time()
@@ -10,6 +10,7 @@ t0 = time.time()
 shape_values = [i/10 for i in range(1,20,2)]
 l1 = l2 = l3 = 0.12
 
+counter = 0
 for l5 in shape_values:
     for l4 in shape_values:
 
@@ -31,20 +32,22 @@ for l5 in shape_values:
 
         mesh = pygalmesh.generate_surface_mesh(
             d,
-            angle_bound=30,
-            radius_bound=0.005,
-            distance_bound=0.005
+            min_facet_angle=30,
+            max_radius_surface_delaunay_ball=0.005,
+            max_facet_distance=0.005
         )
 
-        meshio.write(os.path.join(obj_dir, "model.obj"), mesh, file_format="stl")
+        meshio.write(os.path.join(obj_dir, "model.obj"), mesh, file_format="obj")
 
         # check normal issue with trimesh
         mesh_1 = trimesh.load_mesh(os.path.join(obj_dir, "model.obj"))
         mesh_1.show()
-        cmd = input("invert?y/n")
+        cmd = input("Shape {}: invert? y/n... ".format(counter))
         if cmd == 'y':
             mesh_1.invert()
         mesh_1.export(os.path.join(obj_dir, "model.obj"))
+
+        counter += 1
 
 t1 = time.time()
 

@@ -37,25 +37,34 @@ def get_urdf_str(mesh_dir, scale_values):
 """) % (mesh_dir, scale_values[0], scale_values[1], scale_values[2], mesh_dir, scale_values[0], scale_values[1], scale_values[2])
     return urdf_str
 
+def linspace(start, stop, n):
+    if n == 1:
+        yield stop
+        return
+    h = (stop - start) / (n - 1)
+    for i in range(n):
+        yield start + h * i
 
 # Write all urdf strings
 shape_values = [i/10. for i in range(1, 20, 2)]
+min_dim, max_dim = 0.06, 0.12
 
-min_dim, max_dim = 0.02, 0.12
-max_grasp_dim = 0.04
+# generate multiple urdfs per obj (Warning: generates 6k files)
+# dim_values = list(linspace(min_dim, max_dim, 4))
+# print(dim_values)
 
-dim_values = [i/100. for i in range(int(min_dim*100), int(max_dim*100))]
-
-max_grasp_dim_idx = dim_values.index(max_grasp_dim)
+# just generate one urdf per .obj
+dim_values = [0.12]
 
 count = 0
 for l5 in shape_values:
     for l4 in shape_values:
         for l1 in dim_values:
-            for l2 in dim_values[:max_grasp_dim_idx+1]:
+            for l2 in dim_values:
                 for l3 in dim_values:
                     count += 1
-                    # setup dirs
+
+                    # # setup dirs
                     obj_dir = "sq_" + str(l1) + "_" + str(l2) + "_" + str(l3) + "_" + str(l4) + "_" + str(l5)
                     mesh_dir = "sq_" + str(max_dim) + "_" + str(max_dim) + "_" + str(max_dim) + "_" + str(l4) + "_" + str(l5)
 
