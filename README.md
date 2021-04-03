@@ -1,14 +1,14 @@
 # pybullet-object-models
 
-<!--- 
+
 <p align="center">
 	<img width="180"  src="figures/primitive_example.gif">
+	<img width="180"  src="figures/random_example.gif">
 	<img width="180"  src="figures/ycb_example.gif">
 	<img width="180"  src="figures/superquadric_example.gif">
-	<img width="180"  src="figures/random_example.gif">
 	<img width="180"  src="figures/google_example.gif">
 </p>
----> 
+
 
 This repository contains a collection of object models for simulation, along with helper scripts for downloading, generating and tidying the required files. In particular, they have been tuned and tested in [pybullet](https://github.com/bulletphysics/bullet3/tree/master/examples/pybullet).
 
