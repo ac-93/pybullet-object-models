@@ -2,11 +2,11 @@
 
 
 <p align="center">
-	<img width="180"  src="figures/primitive_example.gif">
-	<img width="180"  src="figures/random_example.gif">
-	<img width="180"  src="figures/ycb_example.gif">
-	<img width="180"  src="figures/superquadric_example.gif">
-	<img width="180"  src="figures/google_example.gif">
+	<img width="160"  src="figures/primitive_example.gif">
+	<img width="160"  src="figures/random_example.gif">
+	<img width="160"  src="figures/ycb_example.gif">
+	<img width="160"  src="figures/superquadric_example.gif">
+	<img width="160"  src="figures/google_example.gif">
 </p>
 
 
