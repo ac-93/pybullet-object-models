@@ -163,9 +163,8 @@ while True:
     elif r_key in keys and keys[r_key] & p.KEY_WAS_TRIGGERED:
         obj_id = reset(obj_id)
 
-
-
 if record:
-    imageio.mimsave(os.path.join('../figures','{}_example.gif'.format(mode)), saved_frames, fps=24)
+    print('Saving Figure...')
+    imageio.mimsave(os.path.join('../figures','{}_example.gif'.format(object_set)), saved_frames, fps=24)
 
 p.disconnect()
