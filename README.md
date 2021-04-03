@@ -55,9 +55,11 @@ It has been tested only on Ubuntu 18.04 LTS.
 
   - The near full set of YCB objects available for download [here](https://www.ycbbenchmarks.com/object-models/).
 
-  - This is too large to store in this repo (approx 1Gb), a tool for dowloading these objects from [here](https://github.com/sea-bass/ycb-tools).
+  - This is too large to store in this repo (approx 1Gb), a tool for dowloading these objects is available [here](https://github.com/sea-bass/ycb-tools), a very slightly modified version of this script with a function for removing numbers from the directory names is included in this repo.
   
   - The downloaded files can then be copied to the `ycb_objects` directory within this repo. This should contain the downloaded files, along with `__init__.py` and `_prototype.urdf` for generating the urdf files using obj2urdf.
+  
+  - To generate urdf files from the downloaded .obj files run `build_object_urdfs.py` with the directoy name set correctly, this will also generate convex decompositions, more details are provided [here](https://github.com/cbteeple/object2urdf). 
 
   - Additionally, there are 3 SDF files, each loading some YCB objects arranged according to a specific layout. The layouts reproduce the layouts of the [GRASPA-benchmark](https://github.com/robotology/GRASPA-benchmark). **TODO: fix broken orientations on layouts.**
 
@@ -139,7 +141,7 @@ bazel build ...
   
   - A script for renaming the directories, moving textures and clearing empty directories is provided in `tidy_google_objects.py`. Be careful when using as this will be removing/renaming a large number of files, I would reccomended commenting out any code that alters files and monitoring beforehand to make sure it is working as intended before use.
   
-  - This comes with sdf files that can directly be used in pybullet, however for consistency I find automatically generating urdf files using the [obj2urdf](https://github.com/cbteeple/object2urdf) package. A script to do this is provided in `build_object_urdfs.py`, this will also generate convex decompositions, more details are provided in the linked repo. **Warning, takes a while to run for the full google_scanned_objects set**.
+  - This comes with sdf files that can directly be used in pybullet, however for consistency I find automatically generating urdf files using the [obj2urdf](https://github.com/cbteeple/object2urdf) package helpful. A script to do this is provided in `build_object_urdfs.py` (change directoy name), this will also generate convex decompositions, more details are provided in the linked repo. **Warning, takes a while to run for the full google_scanned_objects set**.
 
 ### Usage ###
 
