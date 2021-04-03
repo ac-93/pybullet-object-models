@@ -1,7 +1,10 @@
+**/google_scanned_objects/
+**/ycb_objects/
+**/test_folder/
 __pycache__
 *.egg-info
 *.bak
 *.swp
 *.idea
 *.pkl
-
+cd 
