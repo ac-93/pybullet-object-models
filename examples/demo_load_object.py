@@ -43,7 +43,7 @@ if object_set == 'ycb':
     data_path = ycb_objects.getDataPath()
     model_list = ycb_objects.getModelList()
 
-elif object == 'superquadric':
+elif object_set == 'superquadric':
     data_path = superquadric_objects.getDataPath()
     model_list = superquadric_objects.getModelList()
 
@@ -71,7 +71,6 @@ def reset(obj_id):
 
     # select rand file
     rand_file = random.choice(model_list)
-    # model_list.remove(rand_file)
 
     # load obj
     print('Loading: ', rand_file)
