@@ -14,3 +14,12 @@ def getModelList():
         model_list.remove('__pycache__')
     except:pass
     return model_list
+
+def getMeshStr():
+    return "{filename}/model/meshes/model.obj"
+
+def getURDFStr():
+    return "{filename}/model.urdf"
+
+def getURDFScale():
+    return [1.0, 1.0, 1.0] 

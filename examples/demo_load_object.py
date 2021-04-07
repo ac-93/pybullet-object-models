@@ -39,21 +39,21 @@ auto_scale = False
 draw_com = False
 record = False
 
-if object_set == 'ycb':
-    data_path = ycb_objects.getDataPath()
-    model_list = ycb_objects.getModelList()
-
-elif object_set == 'superquadric':
-    data_path = superquadric_objects.getDataPath()
-    model_list = superquadric_objects.getModelList()
-
-elif object_set == 'primitive':
+if object_set == 'primitive':
     data_path = primitive_objects.getDataPath()
     model_list = primitive_objects.getModelList()
 
 elif object_set == 'random':
     data_path = random_objects.getDataPath()
     model_list = random_objects.getModelList()
+
+elif object_set == 'ycb':
+    data_path = ycb_objects.getDataPath()
+    model_list = ycb_objects.getModelList()
+
+elif object_set == 'superquadric':
+    data_path = superquadric_objects.getDataPath()
+    model_list = superquadric_objects.getModelList()
 
 elif object_set == 'google':
     data_path = google_scanned_objects.getDataPath()
@@ -76,6 +76,7 @@ def reset(obj_id):
     print('Loading: ', rand_file)
     # flags = p.URDF_INITIALIZE_SAT_FEATURES
     obj_id = p.loadURDF(os.path.join(data_path, rand_file, "model.urdf"), start_pos)
+    # obj_id = p.loadURDF(os.path.join(data_path, rand_file, "model_rounded.urdf"), start_pos)
 
     if auto_scale:
         # Could use trimesh to get bounding box before loading in pybullet
