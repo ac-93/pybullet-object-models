@@ -40,7 +40,7 @@ start_orn = p.getQuaternionFromEuler([0,0,0])
 # flags for performing certain tasks
 auto_scale = False
 draw_com = False
-record = True
+record = False
 
 if object_set == 'primitive':
     data_path = primitive_objects.getDataPath()
