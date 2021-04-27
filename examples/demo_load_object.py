@@ -12,13 +12,16 @@ from pybullet_object_models import random_objects
 from pybullet_object_models import ycb_objects
 from pybullet_object_models import superquadric_objects
 from pybullet_object_models import google_scanned_objects
+from pybullet_object_models import gibson_feelies
+from pybullet_object_models import gibson_glavens
+from pybullet_object_models import gibson_bellpeppers
 
 # get the object set from arguments
 parser = argparse.ArgumentParser()
 parser.add_argument("-object_set",
     type=str,
     default='ycb',
-    help='Options: {primitive, random, superquadric, ycb, google}'
+    help='Options: {primitive, random, superquadric, ycb, google, feelies, glavens, bellpeppers}'
 )
 args = parser.parse_args()
 object_set = args.object_set
@@ -37,7 +40,7 @@ start_orn = p.getQuaternionFromEuler([0,0,0])
 # flags for performing certain tasks
 auto_scale = False
 draw_com = False
-record = False
+record = True
 
 if object_set == 'primitive':
     data_path = primitive_objects.getDataPath()
@@ -58,6 +61,18 @@ elif object_set == 'superquadric':
 elif object_set == 'google':
     data_path = google_scanned_objects.getDataPath()
     model_list = google_scanned_objects.getModelList()
+
+elif object_set == 'feelies':
+    data_path = gibson_feelies.getDataPath()
+    model_list = gibson_feelies.getModelList()
+
+elif object_set == 'glavens':
+    data_path = gibson_glavens.getDataPath()
+    model_list = gibson_glavens.getModelList()
+
+elif object_set == 'bellpeppers':
+    data_path = gibson_bellpeppers.getDataPath()
+    model_list = gibson_bellpeppers.getModelList()
 
 else:
     sys.exit('Incorrect object_set: {}'.format(object_set))

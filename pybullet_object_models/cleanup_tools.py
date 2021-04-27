@@ -79,5 +79,24 @@ def move_urdfs_to_subdirs(dir):
         # remove old urdf file
         os.remove(path)
 
+def simplify_mesh(dir):
+    import open3d as o3d
+    target_number_of_triangles = 16000
+
+    path = pathlib.Path(dir).absolute()
+    all_obj_files = [y for x in os.walk(path) for y in glob(os.path.join(x[0], '*.obj'))]
+    print(all_obj_files)
+    for obj_file in all_obj_files:
+        mesh = o3d.io.read_triangle_mesh(obj_file)
+
+        voxel_size = max(mesh.get_max_bound() - mesh.get_min_bound()) / 64
+        print(f'voxel_size = {voxel_size:e}')
+        mesh_smp = mesh.simplify_vertex_clustering(
+            voxel_size=voxel_size,
+            contraction=o3d.geometry.SimplificationContraction.Average)
+
+        mesh = o3d.io.write_triangle_mesh(obj_file, mesh_smp)
+
 if __name__ == '__main__':
+    simplify_mesh('gibson_bellpeppers')
     pass

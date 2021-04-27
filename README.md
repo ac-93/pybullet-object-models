@@ -1,12 +1,14 @@
 # pybullet-object-models
 
-
 <p align="center">
 	<img width="160"  src="figures/primitive_example.gif">
 	<img width="160"  src="figures/random_example.gif">
-	<img width="160"  src="figures/ycb_example.gif">
 	<img width="160"  src="figures/superquadric_example.gif">
+	<img width="160"  src="figures/ycb_example.gif">
 	<img width="160"  src="figures/google_example.gif">
+	<img width="160"  src="figures/feelies_example.gif">
+	<img width="160"  src="figures/glavens_example.gif">
+	<img width="160"  src="figures/bellpeppers_example.gif">
 </p>
 
 
@@ -16,9 +18,10 @@ The list of available objects includes:
 
 - [Primitive Objects](#primitive-objects)
 - [Random Objects](#random-objects)
-- [YCB Objects](#ycb-objects)
 - [Superquadric Objects](#superquadric-objects)
+- [YCB Objects](#ycb-objects)
 - [Google Scanned Objects](#google-scanned-objects)
+- [Gibson Objects](#gibson-objects)
 
 Each object has the following files:
 
@@ -49,19 +52,6 @@ It has been tested only on Ubuntu 18.04 LTS.
 ### Random Objects ###
 
   - Set of randomly generated objects from the [pybullet repo](https://github.com/bulletphysics/bullet3/tree/master/examples/pybullet/gym/pybullet_data/random_urdfs).
-
-
-### YCB Objects ###
-
-  - The near full set of YCB objects available for download [here](https://www.ycbbenchmarks.com/object-models/).
-
-  - This is too large to store in this repo (approx 1Gb), a tool for dowloading these objects is available [here](https://github.com/sea-bass/ycb-tools), a very slightly modified version of this script with a function for removing numbers from the directory names is included in this repo.
-  
-  - The downloaded files can then be copied to the `ycb_objects` directory within this repo. This should contain the downloaded files, along with `__init__.py` and `_prototype.urdf` for generating the urdf files using obj2urdf.
-  
-  - To generate urdf files from the downloaded .obj files run `build_object_urdfs.py` with the directoy name set correctly, this will also generate convex decompositions, more details are provided [here](https://github.com/cbteeple/object2urdf). 
-
-  - Additionally, there are 3 SDF files, each loading some YCB objects arranged according to a specific layout. The layouts reproduce the layouts of the [GRASPA-benchmark](https://github.com/robotology/GRASPA-benchmark). **TODO: fix broken orientations on layouts.**
 
 ### Superquadric Objects ###
 
@@ -121,6 +111,19 @@ By default, the `generate_superquadric_mesh.py` creates 100 superquadric meshes,
 
 You can of course modify the script to reduce the number of generated superquadric meshes as you like.
 
+
+### YCB Objects ###
+
+  - The near full set of YCB objects available for download [here](https://www.ycbbenchmarks.com/object-models/).
+
+  - This is too large to store in this repo (approx 1Gb), a tool for dowloading these objects is available [here](https://github.com/sea-bass/ycb-tools), a very slightly modified version of this script with a function for removing numbers from the directory names is included in this repo.
+  
+  - The downloaded files can then be copied to the `ycb_objects` directory within this repo. This should contain the downloaded files, along with `__init__.py` and `_prototype.urdf` for generating the urdf files using obj2urdf.
+  
+  - To generate urdf files from the downloaded .obj files run `build_object_urdfs.py` with the directoy name set correctly, this will also generate convex decompositions, more details are provided [here](https://github.com/cbteeple/object2urdf). 
+
+  - Additionally, there are 3 SDF files, each loading some YCB objects arranged according to a specific layout. The layouts reproduce the layouts of the [GRASPA-benchmark](https://github.com/robotology/GRASPA-benchmark). **TODO: fix broken orientations on layouts.**
+
 ### Google Scanned Objects ###
 
   - Over 1000 "common" household objects that have been 3D scanned for use in robotic simulation and synthetic perception research from [Google Research](https://app.ignitionrobotics.org/GoogleResearch/fuel/collections/Google%20Scanned%20Objects).
@@ -142,6 +145,18 @@ bazel build ...
   - A script for renaming the directories, moving textures and clearing empty directories is provided in `tidy_google_objects.py`. Be careful when using as this will be removing/renaming a large number of files, I would reccomended commenting out any code that alters files and monitoring beforehand to make sure it is working as intended before use.
   
   - This comes with sdf files that can directly be used in pybullet, however for consistency I find automatically generating urdf files using the [obj2urdf](https://github.com/cbteeple/object2urdf) package helpful. A script to do this is provided in `build_object_urdfs.py` (change directoy name), this will also generate convex decompositions, more details are provided in the linked repo. **Warning, takes a while to run for the full google_scanned_objects set**.
+
+### Gibson Objects ###
+
+ - Sets of objects for visual and haptic shape perception (see [here](https://academics.skidmore.edu/blogs/flip/?page_id=669) for more info).
+ 
+ - [Feelies](https://github.com/skidvision/Feelies): Artificial shapes for vision and haptic experiments.
+ 
+ - [Glavens](https://github.com/skidvision/Glavens): Shapes for haptic experiments of progressive complexity.
+  
+ - [BellPeppers](https://github.com/skidvision/Bellpeppers): Natural shapes for vision and haptic experiments
+ 
+ - Some of the meshes have been simplified to reduce the number of triangles.
 
 ### Usage ###
 
