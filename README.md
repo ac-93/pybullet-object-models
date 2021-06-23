@@ -5,12 +5,13 @@
 	<img width="160"  src="figures/random_example.gif">
 	<img width="160"  src="figures/superquadric_example.gif">
 	<img width="160"  src="figures/ycb_example.gif">
-	<img width="160"  src="figures/google_example.gif">
+	<img width="160"  src="figures/google_example.gif"><br/>
+	<img width="160"  src="figures/egad_train_example.gif">
+	<img width="160"  src="figures/egad_eval_example.gif"><br/>
 	<img width="160"  src="figures/feelies_example.gif">
 	<img width="160"  src="figures/glavens_example.gif">
 	<img width="160"  src="figures/bellpeppers_example.gif">
 </p>
-
 
 This repository contains a collection of object models for simulation, along with helper scripts for downloading, generating and tidying the required files. In particular, they have been tuned and tested in [pybullet](https://github.com/bulletphysics/bullet3/tree/master/examples/pybullet).
 
@@ -21,6 +22,7 @@ The list of available objects includes:
 - [Superquadric Objects](#superquadric-objects)
 - [YCB Objects](#ycb-objects)
 - [Google Scanned Objects](#google-scanned-objects)
+- [Evolved Grasping Analysis Dataset (EGAD)](#egad-objects)
 - [Gibson Objects](#gibson-objects)
 
 Each object has the following files:
@@ -145,6 +147,24 @@ bazel build ...
   - A script for renaming the directories, moving textures and clearing empty directories is provided in `tidy_google_objects.py`. Be careful when using as this will be removing/renaming a large number of files, I would reccomended commenting out any code that alters files and monitoring beforehand to make sure it is working as intended before use.
   
   - This comes with sdf files that can directly be used in pybullet, however for consistency I find automatically generating urdf files using the [obj2urdf](https://github.com/cbteeple/object2urdf) package helpful. A script to do this is provided in `build_object_urdfs.py` (change directoy name), this will also generate convex decompositions, more details are provided in the linked repo. **Warning, takes a while to run for the full google_scanned_objects set**.
+
+### EGAD Objects ###
+
+Evolved  Grasping  Analysis  Dataset (EGAD), comprising over 2000 generated objects aimed at training and evaluating robotic visual grasp detection algorithms. See more details [here](https://github.com/dougsm/egad) and [here](https://arxiv.org/abs/2003.01314). 
+
+To set up these objects:
+
+ - Follow the steps to download the objects available on the project website ([https://dougsm.github.io/egad/](https://dougsm.github.io/egad/)). 
+ 
+ - Place the extracted files in the egad directory under `egad/egad_train_set` and `egad/egad_eval_set`.
+ 
+ - Run `python tidy_egad.py` to move all `.obj` files into their own directories.
+ 
+ - Copy the `_protype.urdf` and `__init__.py` files from `/egad/` into the `egad_eval_set` and `egad_train_set` directories.
+ 
+ - Run `python build_object_urdfs.py` with the correct directories uncommented. **Warning, this will take a while for the full 2000 object training set**.
+ 
+ - Run `python demo_load_object.py -object_set=egad_eval` or `-object_set=egad_train` to check things work correctly.
 
 ### Gibson Objects ###
 
