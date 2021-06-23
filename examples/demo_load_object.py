@@ -15,13 +15,15 @@ from pybullet_object_models import google_scanned_objects
 from pybullet_object_models import gibson_feelies
 from pybullet_object_models import gibson_glavens
 from pybullet_object_models import gibson_bellpeppers
+from pybullet_object_models.egad import egad_train_set
+from pybullet_object_models.egad import egad_eval_set
 
 # get the object set from arguments
 parser = argparse.ArgumentParser()
 parser.add_argument("-object_set",
     type=str,
     default='ycb',
-    help='Options: {primitive, random, superquadric, ycb, google, feelies, glavens, bellpeppers}'
+    help='Options: {primitive, random, superquadric, ycb, google, feelies, glavens, bellpeppers, egad_train, egad_eval}'
 )
 args = parser.parse_args()
 object_set = args.object_set
@@ -74,6 +76,14 @@ elif object_set == 'bellpeppers':
     data_path = gibson_bellpeppers.getDataPath()
     model_list = gibson_bellpeppers.getModelList()
 
+elif object_set == 'egad_eval':
+    data_path = egad_eval_set.getDataPath()
+    model_list = egad_eval_set.getModelList()
+
+elif object_set == 'egad_train':
+    data_path = egad_train_set.getDataPath()
+    model_list = egad_train_set.getModelList()
+
 else:
     sys.exit('Incorrect object_set: {}'.format(object_set))
 
@@ -91,7 +101,6 @@ def reset(obj_id):
     print('Loading: ', rand_file)
     # flags = p.URDF_INITIALIZE_SAT_FEATURES
     obj_id = p.loadURDF(os.path.join(data_path, rand_file, "model.urdf"), start_pos)
-    # obj_id = p.loadURDF(os.path.join(data_path, rand_file, "model_rounded.urdf"), start_pos)
 
     if auto_scale:
         # Could use trimesh to get bounding box before loading in pybullet
