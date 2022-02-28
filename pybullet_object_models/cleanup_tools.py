@@ -98,5 +98,5 @@ def simplify_mesh(dir):
         mesh = o3d.io.write_triangle_mesh(obj_file, mesh_smp)
 
 if __name__ == '__main__':
-    remove_urdfs('egad/egad_eval_set')
+    remove_urdfs('shan_stimuli')
     pass

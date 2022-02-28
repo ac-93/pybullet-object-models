@@ -12,6 +12,7 @@ from pybullet_object_models.cleanup_tools import move_urdfs_to_subdirs, rename_u
 # object_folder = "egad/egad_eval_set"
 object_folder = "egad/egad_train_set"
 
+
 builder = ObjectUrdfBuilder(object_folder)
 builder.build_library(force_overwrite=True,
                       decompose_concave=True,

@@ -17,6 +17,7 @@ from pybullet_object_models import gibson_glavens
 from pybullet_object_models import gibson_bellpeppers
 from pybullet_object_models.egad import egad_train_set
 from pybullet_object_models.egad import egad_eval_set
+from pybullet_object_models import shan_stimuli
 
 # get the object set from arguments
 parser = argparse.ArgumentParser()
@@ -87,6 +88,8 @@ elif object_set == 'egad_train':
 else:
     sys.exit('Incorrect object_set: {}'.format(object_set))
 
+data_path = shan_stimuli.getDataPath()
+model_list = shan_stimuli.getModelList()
 # load random object
 def reset(obj_id):
 

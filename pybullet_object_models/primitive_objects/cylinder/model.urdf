@@ -14,7 +14,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-				<mesh filename="cylinder.obj" scale="1.0 1.0 1.0"/>
+				<mesh filename="cylinder_rounded.obj" scale="1.0 1.0 1.0"/>
       </geometry>
        <material name="red">
         <color rgba="0.9 0 0.2 1.0"/>
@@ -23,7 +23,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-				<mesh filename="cylinder.obj" scale="1.0 1.0 1.0"/>
+				<mesh filename="cylinder_rounded.obj" scale="1.0 1.0 1.0"/>
       </geometry>
     </collision>
   </link>
