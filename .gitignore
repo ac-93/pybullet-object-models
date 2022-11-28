@@ -3,6 +3,7 @@
 **/google_scanned_objects/
 **/ycb_objects/
 **/test_folder/
+**/shapenet/
 __pycache__
 *.egg-info
 *.bak
