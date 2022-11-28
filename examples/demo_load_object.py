@@ -17,28 +17,28 @@ from pybullet_object_models import gibson_glavens
 from pybullet_object_models import gibson_bellpeppers
 from pybullet_object_models.egad import egad_train_set
 from pybullet_object_models.egad import egad_eval_set
-from pybullet_object_models import shan_stimuli
+from pybullet_object_models.shapenet import ShapeNetCoreV2
 
 # get the object set from arguments
 parser = argparse.ArgumentParser()
 parser.add_argument("-object_set",
-    type=str,
-    default='ycb',
-    help='Options: {primitive, random, superquadric, ycb, google, feelies, glavens, bellpeppers, egad_train, egad_eval}'
-)
+                    type=str,
+                    default='ycb',
+                    help='Options: {primitive, random, superquadric, ycb, google, feelies, glavens, bellpeppers, egad_train, egad_eval, shapenet}'
+                    )
 args = parser.parse_args()
 object_set = args.object_set
 
 # connect to pybullet and load a plane
 p.connect(p.GUI)
-p.setGravity(0,0,-10)
+p.setGravity(0, 0, -10)
 p.setAdditionalSearchPath(pybullet_data.getDataPath())
 
 plane_id = p.loadURDF("plane.urdf")
 
 # load an object
-start_pos = [0,0,0.15]
-start_orn = p.getQuaternionFromEuler([0,0,0])
+start_pos = [0, 0, 0.15]
+start_orn = p.getQuaternionFromEuler([0, 0, 0])
 
 # flags for performing certain tasks
 auto_scale = False
@@ -85,12 +85,18 @@ elif object_set == 'egad_train':
     data_path = egad_train_set.getDataPath()
     model_list = egad_train_set.getModelList()
 
+elif object_set == 'shapenet':
+    data_path = ShapeNetCoreV2.getDataPath()
+    model_list = ShapeNetCoreV2.getModelList()
+    start_orn = p.getQuaternionFromEuler([np.pi/2, 0, np.pi/2])
+
 else:
     sys.exit('Incorrect object_set: {}'.format(object_set))
 
-data_path = shan_stimuli.getDataPath()
-model_list = shan_stimuli.getModelList()
-# load random object
+
+print('Number of objects in set: {}'.format(len(model_list)))
+
+
 def reset(obj_id):
 
     # remove if already exists
@@ -103,23 +109,31 @@ def reset(obj_id):
     # load obj
     print('Loading: ', rand_file)
     # flags = p.URDF_INITIALIZE_SAT_FEATURES
-    obj_id = p.loadURDF(os.path.join(data_path, rand_file, "model.urdf"), start_pos)
+    obj_id = p.loadURDF(
+        os.path.join(data_path, rand_file, "model.urdf"),
+        start_pos, start_orn,
+        # flags=flags
+    )
 
     if auto_scale:
         # Could use trimesh to get bounding box before loading in pybullet
         # to avoid remove/reload
         targ_diag = 0.15
+        # targ_diag = 0.5
         obj_aabb = p.getAABB(obj_id)
         aabb_min, aabb_max = obj_aabb[0], obj_aabb[1]
         long_diag = np.linalg.norm(np.array(aabb_min)-np.array(aabb_max))
 
         ratio = targ_diag / long_diag
         p.removeBody(obj_id)
-        obj_id = p.loadURDF(os.path.join(data_path, rand_file, "model.urdf"),
-                            start_pos,
-                            # flags=flags,
-                            globalScaling=ratio)
+        obj_id = p.loadURDF(
+            os.path.join(data_path, rand_file, "model.urdf"),
+            start_pos, start_orn,
+            # flags=flags,
+            globalScaling=ratio
+        )
     return obj_id
+
 
 obj_id = reset(None)
 
@@ -153,14 +167,14 @@ while True:
         p.addUserDebugLine([0, 0, 0], [0, 0, 0.1], [0, 0, 1], parentObjectUniqueId=obj_id, lifeTime=0.1)
 
     if record:
-        if (step%save_every==0):
+        if (step % save_every == 0):
             # get image from camera
             view_matrix = p.computeViewMatrixFromYawPitchRoll(cameraTargetPosition=cam_pos,
-                                                             distance=cam_dist,
-                                                             yaw=cam_yaw,
-                                                             pitch=cam_pitch,
-                                                             roll=cam_roll,
-                                                             upAxisIndex=2)
+                                                              distance=cam_dist,
+                                                              yaw=cam_yaw,
+                                                              pitch=cam_pitch,
+                                                              roll=cam_roll,
+                                                              upAxisIndex=2)
 
             aspect = pixel_width / pixel_height
             projection_matrix = p.computeProjectionMatrixFOV(fov, aspect, near_plane, far_plane)
@@ -193,6 +207,6 @@ while True:
 
 if record:
     print('Saving Figure...')
-    imageio.mimsave(os.path.join('../figures','{}_example.gif'.format(object_set)), saved_frames, fps=24)
+    imageio.mimsave(os.path.join('../figures', '{}_example.gif'.format(object_set)), saved_frames, fps=24)
 
 p.disconnect()

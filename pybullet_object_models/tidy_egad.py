@@ -2,10 +2,10 @@ import os
 from glob import glob
 import pathlib
 
+
 def move_obj_to_subdirs(dir):
     path = pathlib.Path(dir).absolute()
     all_obj_files = [y for x in os.walk(path) for y in glob(os.path.join(x[0], '*.obj'))]
-
 
     for file_path in all_obj_files:
         path = pathlib.Path(file_path)

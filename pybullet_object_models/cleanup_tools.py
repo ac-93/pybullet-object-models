@@ -3,19 +3,21 @@ from glob import glob
 import pathlib
 import time
 
+
 def remove_empty_dirs(dir):
     subdirs = glob(dir + '/**/', recursive=True)
     n_empty, n_full = 0, 0
     for dir in subdirs:
         if len(os.listdir(dir)) == 0:
-            n_empty+=1
+            n_empty += 1
             print('Removing: ', dir)
             os.rmdir(dir)
             time.sleep(0.001)
         else:
-            n_full+=1
+            n_full += 1
     print('Empty: ', n_empty)
     print('Full: ', n_full)
+
 
 def remove_urdfs(dir):
     path = pathlib.Path(dir).absolute()
@@ -28,6 +30,7 @@ def remove_urdfs(dir):
             continue
 
         os.remove(path)
+
 
 def rename_urdfs(dir):
     path = pathlib.Path(dir).absolute()
@@ -42,13 +45,20 @@ def rename_urdfs(dir):
 
         os.rename(path, new_path)
 
+
 def get_immediate_subdirectories(a_dir):
-    return sorted([name for name in os.listdir(a_dir)
-            if os.path.isdir(os.path.join(a_dir, name))])
+    subdirs = [name for name in os.listdir(a_dir) if os.path.isdir(os.path.join(a_dir, name))]
+    try:
+        subdirs.remove('__pycache__')
+    except:
+        pass
+    return sorted(subdirs)
+
 
 def count_dirs(dir):
     subdirs = get_immediate_subdirectories(dir)
     print(len(subdirs))
+
 
 def move_urdfs_to_subdirs(dir):
     """
@@ -79,6 +89,7 @@ def move_urdfs_to_subdirs(dir):
         # remove old urdf file
         os.remove(path)
 
+
 def simplify_mesh(dir):
     import open3d as o3d
     target_number_of_triangles = 16000
@@ -97,6 +108,6 @@ def simplify_mesh(dir):
 
         mesh = o3d.io.write_triangle_mesh(obj_file, mesh_smp)
 
+
 if __name__ == '__main__':
-    remove_urdfs('shan_stimuli')
-    pass
+    remove_urdfs('test_folder')
