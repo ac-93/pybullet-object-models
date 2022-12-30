@@ -183,17 +183,17 @@ To set up these objects:
 
 - The dataset is available on the ShapeNet website ([https://shapenet.org/](https://shapenet.org/)). 
 
-To extract `.urdf` files from the `ShapeNetCore.v2` dataset, please follow these instructions:
+To extract `.urdf` files from the `ShapeNetCoreV2` dataset, please follow these instructions:
 
-1. Download the `ShapeNetCore.v2` dataset and place it under `pybullet_object_models/shapenet/`. The name of the dataset folder needs to be `ShapeNetCore.v2`. 
+1. Download the `ShapeNetCoreV2` dataset and place it under `pybullet_object_models/shapenet/`. This download defaults the dataset folder name as `ShapeNetCore.v2`. Please rename the folder as `ShapeNetCoreV2`.  
 
-2. Copy the `_protype.urdf` file from `/egad/` under the `ShapeNetCore.v2` directory.
+2. Copy the `_protype.urdf` and `__ini__.py` files from `/egad/` under the `ShapeNetCoreV2` directory.
 
 3. Once the previous two steps are completed, you should have the following tree:
 ```
 pybullet_object_models
  ├── shapenet
- │   ├── ShapeNetCore.v2
+ │   ├── ShapeNetCoreV2
  │   │   ├── _prototype.urdf
  │   │   ├── ...   # example: 02942699 
  |   |   |   ├── ...    # example: 1ab3abb5c090d9b68e940c4e64a94e1e
@@ -203,7 +203,7 @@ pybullet_object_models
 ```
 pybullet_object_models
  ├── shapenet
- │   ├── ShapeNetCore.v2
+ │   ├── ShapeNetCoreV2
  │   │   ├── _prototype.urdf
  │   │   ├── 02942699 
  |   |   |   ├── 1ab3abb5c090d9b68e940c4e64a94e1e

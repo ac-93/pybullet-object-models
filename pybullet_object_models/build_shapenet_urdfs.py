@@ -7,7 +7,7 @@ from pybullet_object_models.cleanup_tools import get_immediate_subdirectories
 # Build entire libraries of URDFs
 # Can take a while
 
-shapenet_folder = "shapenet/ShapeNetCore.v2"
+shapenet_folder = "shapenet/ShapeNetCoreV2"
 
 subdirs = get_immediate_subdirectories(shapenet_folder)
 
