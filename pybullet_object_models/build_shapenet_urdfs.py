@@ -24,7 +24,7 @@ for subdir in subdirs:
     builder.build_library(force_overwrite=True,
                           decompose_concave=False,
                           force_decompose=False,
-                          center='mass')
+                          center='geometric')
 
     # tidy up
     move_urdfs_to_subdirs(object_folder)
