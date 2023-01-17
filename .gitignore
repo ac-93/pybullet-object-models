@@ -3,11 +3,12 @@
 **/google_scanned_objects/
 **/ycb_objects/
 **/test_folder/
-**/shapenet/ShapeNetCore.v2
+**/shapenet/ShapeNetCoreV2
 __pycache__
 *.egg-info
 *.bak
 *.swp
 *.idea
 *.pkl
-cd 
+cd
+.DS_Store 
