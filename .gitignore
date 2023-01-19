@@ -4,6 +4,7 @@
 **/ycb_objects/
 **/test_folder/
 **/shapenet/ShapeNetCoreV2
+**/shapenet/ShapeNetCoreV2urdf
 __pycache__
 *.egg-info
 *.bak
@@ -11,4 +12,5 @@ __pycache__
 *.idea
 *.pkl
 cd
-.DS_Store 
+.DS_Store
+.vscode/ 

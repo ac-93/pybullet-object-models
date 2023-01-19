@@ -181,13 +181,15 @@ To set up these objects:
 
 ### ShapeNetCore.v2 ###
 
+Please make sure to have the python library `point-cloud-utils` and `trimesh` installed. This ensures the etxraction of watertight meshes (if requires). Please read below for citation.
+
 - The dataset is available on the ShapeNet website ([https://shapenet.org/](https://shapenet.org/)). 
 
 To extract `.urdf` files from the `ShapeNetCoreV2` dataset, please follow these instructions:
 
 1. Download the `ShapeNetCoreV2` dataset and place it under `pybullet_object_models/shapenet/`. This download defaults the dataset folder name as `ShapeNetCore.v2`. Please rename the folder as `ShapeNetCoreV2`.  
 
-2. Copy the `_protype.urdf` and `__ini__.py` files from `/egad/` under the `ShapeNetCoreV2` directory.
+2. Copy the `_protype.urdf` and `__init__.py` files from `/egad/` under the `ShapeNetCoreV2` directory.
 
 3. Once the previous two steps are completed, you should have the following tree:
 ```
@@ -199,18 +201,22 @@ pybullet_object_models
  |   |   |   ├── ...    # example: 1ab3abb5c090d9b68e940c4e64a94e1e
 ```
 
-4. In the project root folder, run `python build_shapenet_urdfs.py`. The script extracts `.urdf` files from the ShapeNet `.obj` files. The extracted files, renamed `model.urdf`, can be found under each object ID directory. For example:
+4. In the project root folder, run `python build_shapenet_urdfs.py`. This generates a new folder called `ShapeNetCoreV2urdf`, which has the same structure as the original folder `ShapeNetCoreV2`. The script extracts `.urdf` files from the ShapeNet `.obj` files. The extracted files, renamed `model.urdf`, can be found under each object ID directory in the new folder. In addition, the original `model_normalized.obj` is copied to the new folder. For example:
 ```
 pybullet_object_models
  ├── shapenet
- │   ├── ShapeNetCoreV2
+ │   ├── ShapeNetCoreV2urdf  <-- new folder
  │   │   ├── _prototype.urdf
  │   │   ├── 02942699 
  |   |   |   ├── 1ab3abb5c090d9b68e940c4e64a94e1e
- |   |   |   |   ├── models
- |   |   |   |   ├── images
  |   |   |   |   ├── model.urdf <-- EXTRACTED .URDF 
+ |   |   |   |   ├── model.obj
 ```
+
+- Some applications require watertight meshes. An example is DeepSDF. If a watertight mesh is required, please run `python build_shapenet_urdfs.py --watertight`. This first generates a watertight mesh and then extract its urdf. The generated dataset has the same structure as described above, but `model.obj` and `model.urdf` are watertight.
+
+If you use watertight meshes, please make sure to citethe original contributor:
+
 
 ### Usage ###
 
@@ -280,4 +286,25 @@ p.setGravity(0, 0, -9.8)
 while 1:
     p.stepSimulation()
     time.sleep(1./240)
+```
+
+# Citation
+If this library contributes to an academic publication, please consider citing the following resources:
+```
+@software{trimesh,
+	author = {{Dawson-Haggerty et al.}},
+	title = {trimesh},
+	url = {https://trimsh.org/},
+	version = {3.2.0},
+	date = {2019-12-8},
+}
+```
+If you have used the Shapenet URDF extraction tool:
+```
+@misc{point-cloud-utils,
+  title = {Point Cloud Utils},
+  author = {Francis Williams},
+  note = {https://www.github.com/fwilliams/point-cloud-utils},
+  year = {2022}
+}
 ```
