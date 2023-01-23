@@ -8,6 +8,8 @@ from glob import glob
 import point_cloud_utils as pcu
 import numpy as np
 import trimesh
+import re
+from tempfile import mkstemp
 # Build entire libraries of URDFs
 # Can take a while
 
@@ -22,12 +24,29 @@ def as_mesh(scene_or_mesh):
         mesh = scene_or_mesh
     return mesh
 
+# Update the object path in the new urdf file
+def replace_obj_in_urdf(filepath, obj_index):
+    with open(filepath, "r") as file:
+        filedata = file.read()
+
+    newdata = filedata.replace(f'filename=\"{obj_index}\"', 'filename="model.obj"')
+
+    with open(filepath, "w") as file:
+        file.write(newdata)
+
 
 def main(args):
     # Create new directory to place processed files
     new_folder = os.path.join(os.path.dirname(shapenet.__file__), 'ShapeNetCoreV2urdf')
     if not os.path.exists(new_folder):
         os.makedirs(new_folder)
+
+    # Create __init__.py file
+    initfile = os.path.join(new_folder, '__init__.py')
+    try:
+        open(initfile, 'x')
+    except FileExistsError:
+        pass
 
     shapenet_folder = os.path.join( os.path.dirname(shapenet.__file__), 'ShapeNetCoreV2')
 
@@ -65,7 +84,7 @@ def main(args):
                     shutil.copy2(obj_path, os.path.join(new_object_folder, 'model.obj'))
                 
                 else:
-                    vm, fm = pcu.make_mesh_watertight(mesh.vertices, mesh.faces, 10000)
+                    vm, fm = pcu.make_mesh_watertight(mesh.vertices, mesh.faces, 50000)
                     watertight_path = os.path.join(new_object_folder, 'model.obj')
                     pcu.save_mesh_vf(watertight_path, vm, fm, dtype=np.float32)
                                    
@@ -83,8 +102,10 @@ def main(args):
             # rename urdf with their .obj name
             src_urdf_path = glob(os.path.join(new_category_folder, '[!_]*.urdf'))[0]
             dst_urdf_path = os.path.join(new_object_folder, 'model.urdf')
-            shutil.move(src_urdf_path, dst_urdf_path)     
+            shutil.move(src_urdf_path, dst_urdf_path)
 
+            # Edit the new urdf with the updated mesh path
+            replace_obj_in_urdf(dst_urdf_path, dst_urdf_path.split(os.sep)[-2])
 
 if __name__=='__main__':
     parser = argparse.ArgumentParser()
