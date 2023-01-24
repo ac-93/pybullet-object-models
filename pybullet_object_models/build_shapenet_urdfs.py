@@ -24,15 +24,23 @@ def as_mesh(scene_or_mesh):
         mesh = scene_or_mesh
     return mesh
 
-# Update the object path in the new urdf file
-def replace_obj_in_urdf(filepath, obj_index):
+
+# Update file
+def replace_in_file(filepath, original, replacement):
+    """Replace original string with replacement string in file at filepath.
+    These can be single strings or list of strings."""
     with open(filepath, "r") as file:
         filedata = file.read()
 
-    newdata = filedata.replace(f'filename=\"{obj_index}\"', 'filename="model.obj"')
+    original = [original] if not isinstance(original, list) else original
+    replacement = [replacement] if not isinstance(replacement, list) else replacement
+    assert len(original) == len(replacement)
+
+    for idx in range(len(original)):
+        filedata = filedata.replace(original[idx], replacement[idx])
 
     with open(filepath, "w") as file:
-        file.write(newdata)
+        file.write(filedata)
 
 
 def main(args):
@@ -104,8 +112,15 @@ def main(args):
             dst_urdf_path = os.path.join(new_object_folder, 'model.urdf')
             shutil.move(src_urdf_path, dst_urdf_path)
 
-            # Edit the new urdf with the updated mesh path
-            replace_obj_in_urdf(dst_urdf_path, dst_urdf_path.split(os.sep)[-2])
+            # Add flag 'concave=yes' to allow concave meshes in simulators,
+            # edit the new urdf with the updated mesh path
+            obj_index = dst_urdf_path.split(os.sep)[-2]
+            original = [f'filename=\"{obj_index}\"', 
+                         'collision']
+            replacement = ['filename=\"model.obj\"',
+                           'collision concave=\"yes\"']
+            replace_in_file(dst_urdf_path, original, replacement)
+
 
 if __name__=='__main__':
     parser = argparse.ArgumentParser()
