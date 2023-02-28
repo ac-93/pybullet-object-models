@@ -215,9 +215,6 @@ pybullet_object_models
 
 - Some applications require watertight meshes. An example is DeepSDF. If a watertight mesh is required, please run `python build_shapenet_urdfs.py --watertight`. This first generates a watertight mesh and then extract its urdf. The generated dataset has the same structure as described above, but `model.obj` and `model.urdf` are watertight.
 
-If you use watertight meshes, please make sure to citethe original contributor:
-
-
 ### Usage ###
 
 Example scripts for importing the objects into pybullet are provided in the examples folder. To run these cd into the `examples` directory and run `python demo_load_object.py`. Use the `-object_set=` argument to load from a given object set, currently this can be selected from `primitive`, `random`, `ycb`, `superquadric` or `google` if setup correctly.

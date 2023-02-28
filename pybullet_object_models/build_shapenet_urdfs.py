@@ -8,6 +8,8 @@ from glob import glob
 import point_cloud_utils as pcu
 import numpy as np
 import trimesh
+import re
+from tempfile import mkstemp
 # Build entire libraries of URDFs
 # Can take a while
 
@@ -23,11 +25,36 @@ def as_mesh(scene_or_mesh):
     return mesh
 
 
+# Update file
+def replace_in_file(filepath, original, replacement):
+    """Replace original string with replacement string in file at filepath.
+    These can be single strings or list of strings."""
+    with open(filepath, "r") as file:
+        filedata = file.read()
+
+    original = [original] if not isinstance(original, list) else original
+    replacement = [replacement] if not isinstance(replacement, list) else replacement
+    assert len(original) == len(replacement)
+
+    for idx in range(len(original)):
+        filedata = filedata.replace(original[idx], replacement[idx])
+
+    with open(filepath, "w") as file:
+        file.write(filedata)
+
+
 def main(args):
     # Create new directory to place processed files
     new_folder = os.path.join(os.path.dirname(shapenet.__file__), 'ShapeNetCoreV2urdf')
     if not os.path.exists(new_folder):
         os.makedirs(new_folder)
+
+    # Create __init__.py file
+    initfile = os.path.join(new_folder, '__init__.py')
+    try:
+        open(initfile, 'x')
+    except FileExistsError:
+        pass
 
     shapenet_folder = os.path.join( os.path.dirname(shapenet.__file__), 'ShapeNetCoreV2')
 
@@ -65,7 +92,7 @@ def main(args):
                     shutil.copy2(obj_path, os.path.join(new_object_folder, 'model.obj'))
                 
                 else:
-                    vm, fm = pcu.make_mesh_watertight(mesh.vertices, mesh.faces, 10000)
+                    vm, fm = pcu.make_mesh_watertight(mesh.vertices, mesh.faces, 50000)
                     watertight_path = os.path.join(new_object_folder, 'model.obj')
                     pcu.save_mesh_vf(watertight_path, vm, fm, dtype=np.float32)
                                    
@@ -83,7 +110,16 @@ def main(args):
             # rename urdf with their .obj name
             src_urdf_path = glob(os.path.join(new_category_folder, '[!_]*.urdf'))[0]
             dst_urdf_path = os.path.join(new_object_folder, 'model.urdf')
-            shutil.move(src_urdf_path, dst_urdf_path)     
+            shutil.move(src_urdf_path, dst_urdf_path)
+
+            # Add flag 'concave=yes' to allow concave meshes in simulators,
+            # edit the new urdf with the updated mesh path
+            obj_index = dst_urdf_path.split(os.sep)[-2]
+            original = [f'filename=\"{obj_index}\"', 
+                         'collision']
+            replacement = ['filename=\"model.obj\"',
+                           'collision concave=\"yes\"']
+            replace_in_file(dst_urdf_path, original, replacement)
 
 
 if __name__=='__main__':
